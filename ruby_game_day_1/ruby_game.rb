@@ -2,16 +2,10 @@ require 'io/console'
 require_relative "player"
 require_relative "jeu"
 
+r,c,x,y = 10,10,1,1
 
-r = 10
-c = 10
-x = 1
-y = 1
 unless ARGV.empty?
-	r = ARGV[0]
-	c = ARGV[1]
-	x = ARGV[2].to_i
-	y = ARGV[3].to_i
+	r,c,x,y = ARGV[0],ARGV[1],ARGV[2].to_i,ARGV[3].to_i
 end
 
 player = Player.new(x,y)

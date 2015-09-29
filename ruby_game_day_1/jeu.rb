@@ -2,12 +2,9 @@ class Jeu
 	attr_accessor :rows_max, :cols_max, :player
 
 	def initialize(rows_max = 10,cols_max = 10, player = Player.new)
-		@rows_max = rows_max
-		@cols_max = cols_max
-		@player = player
+		@rows_max,@cols_max,@player = rows_max,cols_max,player
 	end
 
-	public
 	def draw
 		puts "On affiche un plateau de #{rows_max} lignes et #{cols_max} colonnes"
 		puts "Le joueur est en position #{player.x}/#{player.y}"
@@ -17,5 +14,5 @@ class Jeu
 			end
 			puts
 		end
-	end
+	end		
 end
