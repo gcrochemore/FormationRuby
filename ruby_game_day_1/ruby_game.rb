@@ -1,16 +1,7 @@
-
 require 'io/console'
+require_relative "player"
+require_relative "jeu"
 
-def draw(rows_max = 10,cols_max = 10, player = {:x=>1,y:1})
-	puts "On affiche un plateau de #{rows_max} lignes et #{cols_max} colonnes"
-	puts "Le joueur est en position #{player[:x]}/#{player[:y]}"
-	(1..rows_max.to_i).each do |j|
-		(1..cols_max.to_i).each do |i|
-			(player[:x] == i && player[:y] == j) ? print("\033[34mP\033[0m ") : print("\033[10mX\033[0m ")
-		end
-		puts
-	end
-end
 
 r = 10
 c = 10
@@ -23,7 +14,9 @@ unless ARGV.empty?
 	y = ARGV[3].to_i
 end
 
-draw r,c,x:x,y:y
+player = Player.new(x,y)
+jeu = Jeu.new(r,c,player)
+jeu.draw
 
 quit = false
 
@@ -33,26 +26,22 @@ while !quit
 	touche = STDIN.getch.to_s
 	puts "la touche est #{touche}"
 
-	diff_x = 0
-	diff_y = 0
 	case touche
 	when "z"
-	  	diff_y = -1
+	  	jeu.player.move(0,-1)
 	when "q"
-	  	diff_x = -1
+	  	jeu.player.move(-1,0)
 	when "s"
-	  	diff_y = 1
+	  	jeu.player.move(0,1)
 	when "d"
-	  	diff_x = 1
+	  	jeu.player.move(1,0)
 	when "p"
 	  	quit = true
 	else
 	  "Je n'ai pas compris"
 	end
-	x = ((x+diff_x).to_i % c.to_i)+1
-	y = ((y+diff_y).to_i % r.to_i)+1
-	
-	draw r,c,x:x,y:y
+
+	jeu.draw
 end
 
 puts "A bientot"
