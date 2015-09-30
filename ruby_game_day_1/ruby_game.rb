@@ -37,7 +37,7 @@ while !quit
 	  "Je n'ai pas compris"
 	end
 
-	puts jeu.draw
+	jeu.draw
 end
 
 puts "A bientot"
