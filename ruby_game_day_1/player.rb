@@ -1,10 +1,6 @@
-class Player
-	attr_accessor :x, :y
+require_relative "static_object"
 
-	def initialize(x = 1,y=1)
-		@x,@y = x,y
-	end
-
+class Player < StaticObject
 	def move(x,y)
 		@x,@y = @x+x, @y+y
 	end

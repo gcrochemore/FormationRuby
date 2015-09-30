@@ -1,4 +1,5 @@
 require 'io/console'
+require_relative "ruby_object"
 require_relative "player"
 require_relative "jeu"
 
@@ -9,7 +10,8 @@ unless ARGV.empty?
 end
 
 player = Player.new(x,y)
-jeu = Jeu.new(r,c,player)
+ruby = RubyObject.new(x+1,y+1)
+jeu = Jeu.new(r,c,player,ruby)
 jeu.draw
 
 quit = false
@@ -35,7 +37,7 @@ while !quit
 	  "Je n'ai pas compris"
 	end
 
-	jeu.draw
+	puts jeu.draw
 end
 
 puts "A bientot"
